@@ -12,7 +12,60 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
-    <script src="main.js"></script>
+    <script src="js/index.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"
+    ></script>
   </head>
-  <body></body>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h3 class="title-header">Tiny Improvements</h3>
+          <i class="far fa-user"></i>
+          <hr />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <div class="card">
+            <div class="card-body">
+              <button
+                class="kudos-modal btn btn-info"
+                type="button"
+                data-toggle="modal"
+                data-target="#kudoModal"
+              >
+                Give Kudos
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-9" id="kudos"></div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade bd-example-modal-lg"
+      id="kudoModal"
+      tabndex="-1"
+      role="dialog"
+      aria-labelledby="kudoModal"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel"></h4>
+          </div>
+          <div class="modal-body"></div>
+          <div id="messages"></div>
+          <form></form>
+          <div class="modal-footer"></div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
