@@ -2,7 +2,9 @@ const mongoose = require('mongoose');
 const User = require('../models/Users');
 mongoose.Promise = global.Promise;
 
+
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/improvements');
+
 
 const names = [
   {
@@ -34,8 +36,10 @@ const names = [
   }
 ];
 
+
 User.deleteMany({})
   .then(() => User.collection.insertMany(names))
+
   .then(data => {
     console.log(data.insertedCount + ' records inserted!');
     process.exit(0);
