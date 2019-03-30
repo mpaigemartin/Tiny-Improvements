@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 var KudoSchema = new Schema({
@@ -7,17 +7,17 @@ var KudoSchema = new Schema({
   to: [
     {
       type: Schema.Types.ObjectId,
-      ref: "User"
+      ref: 'User'
     }
   ],
-  form: [
+  from: [
     {
       type: Schema.Types.ObjectId,
-      ref: "User"
+      ref: 'User'
     }
   ]
 });
 
-const Kudo = mongoose.model("Kudo", KudoSchema);
+const Kudo = mongoose.model('Kudo', KudoSchema);
 
 module.exports = Kudo;
