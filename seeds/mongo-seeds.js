@@ -1,43 +1,47 @@
-const mongoose = require("mongoose");
-const db = require("../models");
+const mongoose = require('mongoose');
+const User = require('../models/Users');
 mongoose.Promise = global.Promise;
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/improvements");
+
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/improvements');
+
 
 const names = [
   {
-    name: "Aragorn"
+    name: 'Aragorn'
   },
   {
-    name: "Boromir"
+    name: 'Boromir'
   },
   {
-    name: "Frodo"
+    name: 'Frodo'
   },
   {
-    name: "Samwise"
+    name: 'Samwise'
   },
   {
-    name: "Merriwhether"
+    name: 'Merriwhether'
   },
   {
-    name: "Perragrin"
+    name: 'Perragrin'
   },
   {
-    name: "Gandalf"
+    name: 'Gandalf'
   },
   {
-    name: "Legolas"
+    name: 'Legolas'
   },
   {
-    name: "Gimli"
+    name: 'Gimli'
   }
 ];
 
-db.User.deleteMany({})
-  .then(() => db.User.collection.insertMany(names))
+
+User.deleteMany({})
+  .then(() => User.collection.insertMany(names))
+
   .then(data => {
-    console.log(data.insertedCount + " records inserted!");
+    console.log(data.insertedCount + ' records inserted!');
     process.exit(0);
   })
   .catch(err => {

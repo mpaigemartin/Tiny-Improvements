@@ -1,11 +1,11 @@
-const User = require("../models/Users");
-const Kudo = require("../models/Kudos");
+const User = require('../models/Users');
+const Kudo = require('../models/Kudos');
 
 module.exports = function(app) {
-  app.get("api/kudos", function(req, res) {
+  app.get('/api/kudos', function(req, res) {
     Kudo.find({})
-      .populate("to")
-      .populate("from")
+      .populate('to')
+      .populate('from')
       .then(function(data) {
         res.json(data);
       })
@@ -14,9 +14,8 @@ module.exports = function(app) {
       });
   });
 
-  app.get("/api/user", function(req, res) {
+  app.get('/api/user', function(req, res) {
     User.find({})
-      .populate("kudos")
       .then(function(data) {
         res.json(data);
       })
@@ -25,7 +24,7 @@ module.exports = function(app) {
       });
   });
 
-  app.post("/api/kudo", function(req, res) {
+  app.post('/api/kudo', function(req, res) {
     const userId = req.body.userId;
     const newKudo = {
       title: req.body.title,

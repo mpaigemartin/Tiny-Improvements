@@ -1,13 +1,14 @@
 $(function() {
   const render = function(dataList) {
-    $("#kudos").empty();
+    $('#kudos').empty();
     for (let i = 0; i < dataList.length; i++) {
-      $("#kudos").append(
-        `<div class="card shadow-lg p-3 mb-5 bg-white rounded">
+      console.log(dataList[i]);
+      $('#kudos').append(
+        `<div class="card">
           <p>${dataList[i].title}</p>
-          <p>From: ${dataList[i].from[0].fromUser}</p>
+          <p>From: ${dataList[i].from[0].name}</p>
           <div class="body">
-            <p>To: ${dataList[i].to[0].toUser}</p>
+            <p>To: ${dataList[i].to[0].name}</p>
             <p>${dataList[i].body}</p>
           </div>
         </div>`
@@ -16,19 +17,20 @@ $(function() {
   };
 
   const getKudos = function() {
-    $.get("/api/kudo").then(function(data) {
+    $.get('/api/kudos').then(function(data) {
       render(data);
     });
   };
 
-  const getUsers = function(dataList) {
-    $.get("/api/user/").then(function(dataList) {
+  const getUsers = function() {
+    $.get('/api/user').then(function(dataList) {
       for (let i = 0; i < dataList.length; i++) {
-        $("#kudo-from").append(
-          `<option value="${dataList[i]._id}'>${dataList[i].name}</option>`
+        console.log('user: ', dataList[i].name);
+        $('#kudo-from').append(
+          `<option value="${dataList[i]._id}">${dataList[i].name}</option>`
         );
-        $("#kudo-to").append(
-          `<option value="${dataList[i]._id}'>${dataList[i].name}</option>`
+        $('#kudo-to').append(
+          `<option value="${dataList[i]._id}">${dataList[i].name}</option>`
         );
       }
     });
@@ -37,41 +39,41 @@ $(function() {
   const postKudo = function(e) {
     e.preventDefault();
     // $("#messages").empty();
-    console.log("kudos");
+    console.log('kudos');
 
-    if ($("#kudo-from").val() && $("#kudo-to").val()) {
+    if ($('#kudo-from').val() && $('#kudo-to').val()) {
       const kudo = {
-        title: $("#kudo-title")
+        title: $('#kudo-title')
           .val()
           .trim(),
-        body: $("#kudo-body")
+        body: $('#kudo-body')
           .val()
           .trim(),
-        from: $("#kudo-from").val(),
-        to: $("#kudo-to").val()
+        from: $('#kudo-from').val(),
+        to: $('#kudo-to').val()
       };
 
-      $.post("/api/kudo", kudo)
+      $.post('/api/kudo', kudo)
         .then(function(data) {
-          $("#kudo-title").val("");
-          $("#kudo-body").val("");
-          $("#kudo-from").val("");
-          $("#kudo-to").val("");
+          $('#kudo-title').val('');
+          $('#kudo-body').val('');
+          $('#kudo-from').val('');
+          $('#kudo-to').val('');
 
-          $(".modal").modal("hide");
+          $('.modal').modal('hide');
 
           getKudos();
         })
         .fail(function(err) {
-          $("#messages").append(`<p>Error</p>`);
+          $('#messages').append(`<p>Error</p>`);
         });
     } else {
-      $("#messages").append(`<p>Please select recipients<p>`);
+      $('#messages').append(`<p>Please select recipients<p>`);
     }
   };
 
   getKudos();
   getUsers();
 
-  $("#send-kudo").on("click", postKudo);
+  $('#send-kudo').on('click', postKudo);
 });
