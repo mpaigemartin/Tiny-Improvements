@@ -3,7 +3,7 @@ $(function() {
     $("#kudos").empty();
     for (let i = 0; i < dataList.length; i++) {
       $("#kudos").append(
-        `<div class="card">
+        `<div class="card shadow-lg p-3 mb-5 bg-white rounded">
           <p>${dataList[i].title}</p>
           <p>From: ${dataList[i].from[0].fromUser}</p>
           <div class="body">

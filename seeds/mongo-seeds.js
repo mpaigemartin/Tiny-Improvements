@@ -35,7 +35,7 @@ const names = [
 ];
 
 db.User.deleteMany({})
-  .then(() => db.User.collection.insertMany(list))
+  .then(() => db.User.collection.insertMany(names))
   .then(data => {
     console.log(data.insertedCount + " records inserted!");
     process.exit(0);
