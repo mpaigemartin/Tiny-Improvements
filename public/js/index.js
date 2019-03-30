@@ -2,14 +2,14 @@ const render = function(dataList) {
   $("#kudos").empty();
   for (let i = 0; i < dataList.length; i++) {
     $("#kudos").append(
-      <div class="card">
-        <p>${dataList[i].title}</p>
-        <p>From: ${dataList[i].from[0].name}</p>
-        <div class="body">
-          <p>To: ${dataList[i].to[0].name}</p>
-          <p>${dataList[i].body}</p>
-        </div>
-      </div>
+      `<div class="card">
+          <p>${dataList[i].title}</p>
+          <p>From: ${dataList[i].from[0].fromUser}</p>
+          <div class="body">
+            <p>To: ${dataList[i].to[0].toUser}</p>
+            <p>${dataList[i].body}</p>
+          </div>
+        </div>`
     );
   }
 };
@@ -20,14 +20,14 @@ const getKudos = function() {
   });
 };
 
-const getUsers = function() {
+const getUsers = function(dataList) {
   $.get("/api/user/").then(function(data) {
-    for (let i = O; i < dataList.length; i++) {
+    for (let i = 0; i < dataList.length; i++) {
       $("#kudo-from").append(
-        `<option value="${data[i]._id}'>${data[i].name}</option>`
+        `<option value="${dataList[i]._id}'>${dataList[i].name}</option>`
       );
       $("#kudo-to").append(
-        `<option value="${data[i]._id}'>${data[i].name}</option>`
+        `<option value="${dataList[i]._id}'>${dataList[i].name}</option>`
       );
     }
   });
@@ -35,7 +35,8 @@ const getUsers = function() {
 
 const postKudo = function(e) {
   e.preventDefault();
-  $("#messages").empty();
+  // $("#messages").empty();
+  console.log("kudos");
 
   if ($("#kudo-from").val() && $("#kudo-to").val()) {
     const kudo = {
@@ -69,6 +70,6 @@ const postKudo = function(e) {
 };
 
 getKudos();
-getUser();
+getUsers();
 
 $(document).on("click", "#send-kudo", postKudo);

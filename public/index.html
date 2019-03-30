@@ -12,12 +12,13 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
-    <script src="js/index.js"></script>
+
     <script
       src="https://code.jquery.com/jquery-3.3.1.min.js"
       integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
       crossorigin="anonymous"
     ></script>
+    <script src="js/index.js"></script>
   </head>
   <body>
     <div class="container">
@@ -62,8 +63,52 @@
           </div>
           <div class="modal-body"></div>
           <div id="messages"></div>
-          <form></form>
+          <form>
+            <div class="container form-group">
+              <div class="row">
+                <div class="col-lg-3 form-area">
+                  <select
+                    name="kudo-from"
+                    id="kudo-from"
+                    class="form-control btn btn-secondary"
+                  >
+                    <option selected disabled value="">Select Sender</option>
+                  </select>
+                </div>
+                <div class="col-lg-5 form-area">
+                  <input
+                    class="form-control"
+                    type="text"
+                    id="kudo-title"
+                    placeholder="Kudo title.."
+                  />
+                  <textarea
+                    class="form-control"
+                    type="text"
+                    id="kudo-body"
+                    rows="5"
+                    placeholder="Your message.."
+                  ></textarea>
+                </div>
+                <div class="col-lg-3 form-area">
+                  <select
+                    name="kudo-to"
+                    id="kudo-to"
+                    class="form-control btn btn-secondary"
+                  >
+                    <option selected disabled value="">Select Receiver</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </form>
           <div class="modal-footer"></div>
+          <button type="button" class="btn btn-default" data-dismiss="modal">
+            Close
+          </button>
+          <button type="button" class="btn btn-primary" id="send-kudo">
+            Send Kudos!
+          </button>
         </div>
       </div>
     </div>

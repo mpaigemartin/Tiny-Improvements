@@ -5,7 +5,7 @@ const PORT = process.env.PORT || 3000;
 
 const app = express();
 app.use(express.urlencoded({ extended: true }));
-app.use(json());
+app.use(express.json());
 app.use(express.static("public"));
 
 const MONGODB_URI =
@@ -13,7 +13,7 @@ const MONGODB_URI =
 
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
-require("./routes/api-routes")(app);
+require("./routes/apiRoutes")(app);
 
 app.listen(PORT, function() {
   console.log(`App is running on port ${PORT}`);
